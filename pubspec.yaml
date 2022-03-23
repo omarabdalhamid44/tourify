@@ -1,0 +1,159 @@
+name: xdd
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^1.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+     - images/logo/logoTourify.png
+     - images/onbord1.png
+     - images/onbord2.png
+     - images/onbord3.png
+     - images/logIn_Sc.png
+     - images/forget_Sc.png
+     - images/gaza.png
+     - images/Quds.png
+     - images/ramallah.png
+     - images/tabaria.png
+     - images/yaffa.png
+     - images/hifa.png
+     - images/icon/fillter.png
+     - images/icon/Heart.png
+     - images/icon/cloudy.png
+     - images/icon/Notification.png
+     - images/icon/left.png
+     - images/icon/right.png
+     - images/icon/left2.png
+     - images/icon/right2.png
+     - images/icon/menudark.png
+     - images/icon/menulight.png
+     - images/icon/home.png
+     - images/icon/story.png
+     - images/icon/map.png
+     - images/icon/profile.png
+     - images/icon/setting.png
+     - images/icon/calling.png
+     - images/icon/Info.png
+     - images/icon/share.png
+     - images/icon/logout.png
+     - images/icon/message.png
+     - images/icon/location.png
+     - images/icon/imageProfile.png
+     - images/icon/heartFill.png
+     - images/icon/calendar.png
+     - images/icon/time.png
+     - images/icon/360Degree.png
+     - images/icon/cities.png
+     - images/icon/more.png
+     - images/personImage/person1.jpg
+     - images/personImage/person2.jpg
+     - images/personImage/person3.jpg
+     - images/personImage/person4.jpg
+     - images/personImage/person5.jpg
+     - images/personImage/person6.jpg
+     - images/personImage/person7.jpg
+     - images/personImage/person8.jpg
+     - images/personImage/person9.jpg
+     - images/placeImage/story1.jpg
+     - images/placeImage/story2.jpeg
+     - images/placeImage/story3.jpg
+     - images/placeImage/story4.jpg
+     - images/placeImage/story5.jfif
+     - images/placeImage/story6.jfif
+     - images/placeImage/story7.jfif
+     - images/placeImage/story8.jpg
+     - images/placeImage/story9.png
+     - images/placeImage/place_gaza/basher.jpg
+     - images/placeImage/place_gaza/bb.jpg
+     - images/placeImage/place_gaza/qalaa.jpg
+     - images/placeImage/place_gaza/sea.jpg
+     - images/placeImage/place_gaza/museim.jfif
+
+
+
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+     - family: Poppins
+       fonts:
+         - asset: fonts/Poppins-Bold.ttf
+           weight: 700
+         - asset: fonts/Poppins-Regular.ttf
+           weight: 400
+         - asset: fonts/Poppins-Medium.ttf
+           weight: 500
+         - asset: fonts/Poppins-SemiBold.ttf
+           weight: 600
+#     - family: Flag
+#       fonts:
+#         - asset: fonts/FlagsColor.ttf
+
+
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
