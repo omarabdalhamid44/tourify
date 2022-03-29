@@ -1,4 +1,5 @@
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/sizeconfig.dart';
@@ -16,8 +17,9 @@ class _Lanach_ScreenState extends State<Lanach_Screen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 5), (){
-      Navigator.pushReplacementNamed(context, '/on_Bording_Screen');
+      Navigator.pushReplacementNamed(context, '/Login_Screen');
       SizeConfig.init(context);
+      Firebase.initializeApp();
 
     });
   }

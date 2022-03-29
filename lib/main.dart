@@ -10,7 +10,6 @@ import 'package:xdd/screens/mainScreens/CitiesScreens/placeInCity.dart';
 import 'package:xdd/screens/mainScreens/homePage.dart';
 import 'package:xdd/screens/story_pages/story_page.dart';
 import 'package:xdd/screens/on_bording_Screens/on_bording.dart';
-// import 'package:xdd/utils/colors.dart';
 
 void main() {
   runApp( const MyHomePage());
@@ -38,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       debugShowCheckedModeBanner: false,
       initialRoute: '/lanach_Screen',
       routes: {
-        '/lanach_Screen' : (context) => const Lanach_Screen(),
+        '/lanach_Screen' : (context) => Lanach_Screen(),
         '/on_Bording_Screen' : (context) => const onBording_Screen(),
         '/Login_Screen' : (context) => const Login_Screen(),
         '/Regestration_Screen' : (context) => const Regestration_Screen(),
