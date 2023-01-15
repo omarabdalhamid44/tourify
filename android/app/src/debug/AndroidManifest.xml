@@ -1,7 +1,9 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.xdd">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Flutter needs it to communicate with the running application
          to allow setting breakpoints, to provide hot reload, etc.
     -->
+<!--    <activity android:name="#com.example.xdd.MainActivity"-->
+<!--        android:exported="false or true"/>-->
     <uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

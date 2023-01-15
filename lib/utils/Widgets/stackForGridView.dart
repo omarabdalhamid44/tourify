@@ -1,18 +1,21 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names, use_key_in_widget_constructors, must_be_immutable, camel_case_types
+
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/sizeconfig.dart';
 import 'package:xdd/utils/Widgets/styles_App.dart';
 
 class stackForGridView extends StatelessWidget {
-  String imageName;
+  ImageProvider imageName;
 
   String cityName;
-  String descrption;
+  String rate;
 
   stackForGridView(
       {required this.imageName,
       required this.cityName,
-      required this.descrption});
+      required this.rate});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,7 @@ class stackForGridView extends StatelessWidget {
                         topLeft: Radius.circular(5),
                         topRight: Radius.circular(5))),
                 child: Image(
-                  image: AssetImage(imageName),
+                  image: imageName,
                   width: double.infinity,
                   height: SizeConfig.scaleHeight(120),
                   fit: BoxFit.fill,
@@ -50,23 +53,62 @@ class stackForGridView extends StatelessWidget {
               textColor: Colors_APP.color_primary,
             ),
             SizedBox(height: 3),
-            Styles_App(
-              text: descrption,
-              fontWeight: FontWeight.w400,
-              fontSize: 15,
-              textColor: Colors_APP.colorText_Light,
+
+            Center(
+              child: Container(
+                  margin: EdgeInsets.only(left: 20),
+                  height: 40,
+                  width: 200,
+                  child: rate == '1'
+                      ? Row(
+                    children: [
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                    ],
+                  )
+                      : rate == '2'
+                      ? Row(
+                    children: [
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                    ],
+                  )
+                      : rate == '3'
+                      ? Row(
+                    children: [
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                    ],
+                  )
+                      : rate == '4'
+                      ? Row(
+                    children: [
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.grey),
+                    ],
+                  )
+                      : Row(
+                    children: [
+                      Icon(FlutterIcons.star_o_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.amberAccent),
+                      Icon(FlutterIcons.star_o_faw,color: Colors.amberAccent),
+                    ],
+                  )),
             ),
-            SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.star, color: Color(0xffF9CD1B)),
-                Icon(Icons.star, color: Color(0xffF9CD1B)),
-                Icon(Icons.star, color: Color(0xffF9CD1B)),
-                Icon(Icons.star, color: Color(0xffF9CD1B)),
-                Icon(Icons.star_half_outlined, color: Color(0xffF9CD1B)),
-              ],
-            )
           ],
         ),
       ],

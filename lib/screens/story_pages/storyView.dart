@@ -1,8 +1,9 @@
+// ignore_for_file: prefer_const_constructors, file_names, non_constant_identifier_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, camel_case_types
+
 import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:xdd/utils/Widgets/story_module.dart';
 import 'package:xdd/utils/Widgets/styles_App.dart';
 
 class Story_Page_View extends StatefulWidget {
@@ -80,7 +81,7 @@ startTimer();
 
               ),
             ),
-            Container(
+            SizedBox(
               height: double.infinity,
               width: double.infinity,
               child: Image(

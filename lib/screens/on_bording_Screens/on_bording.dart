@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: camel_case_types, non_constant_identifier_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:xdd/screens/authScreens/login_Screen.dart';
 import 'package:xdd/screens/on_bording_Screens/content_onbording_Screen.dart';
 import 'package:xdd/screens/on_bording_Screens/indecator_onBording.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
@@ -37,9 +39,9 @@ class _onBording_ScreenState extends State<onBording_Screen> {
               PageView(
                 children: [
 
-                  onBordingScreenWid(title: 'Destination ', subTitle: 'Purchasing Process As Easy As Possible For You. For That Reason We Have Created A Few Buying Guides To Help Guide You Before Making You', image: 'images/onbord1.png'),
-                  onBordingScreenWid(title: 'Video 360°', subTitle: 'Purchasing Process As Easy As Possible For You. For That Reason We Have Created A Few Buying Guides To Help Guide You Before Making You', image: 'images/onbord2.png'),
-                  onBordingScreenWid(title: 'Enjoy Your Holiday', subTitle: 'Purchasing Process As Easy As Possible For You. For That Reason We Have Created A Few Buying Guides To Help Guide You Before Making You', image: 'images/onbord3.png')
+                  OnBordingScreenWid(title: 'Destination ', subTitle: 'We have maps of places that allow users to know the places and navigate easily, calculate the different distances between cities and calculate the time needed to reach the place they want in the way they prefer (walking - using a car)', image: 'images/onbord1.png'),
+                  OnBordingScreenWid(title: 'Image 360°', subTitle: 'The navigation feature is available by displaying 360-degree images that allow the user to see the place from all sides he wants', image: 'images/onbord2.png'),
+                  OnBordingScreenWid(title: 'Enjoy Your Holiday', subTitle: 'Welcome to TouRelish, and we hope that you will have a nice enjoyment of all the services and features that we offer and are available in your hands', image: 'images/onbord3.png')
                 ],
 
                 controller: _pageController,
@@ -51,7 +53,7 @@ class _onBording_ScreenState extends State<onBording_Screen> {
                 ),
 
               Positioned(
-                  top:SizeConfig.scaleHeight(550),
+                  top:SizeConfig.scaleHeight(590),
                   right: SizeConfig.scaleWidth(30),
                   left: SizeConfig.scaleWidth(130),
                   // bottom: 200,
@@ -104,7 +106,7 @@ class _onBording_ScreenState extends State<onBording_Screen> {
                     child: TextButton(onPressed: (){
                       _pageController.nextPage(duration: Duration(seconds: 1), curve: Curves.easeIn);
                     }, child: ElevatedButton(onPressed: (){
-                      Navigator.pushReplacementNamed(context, '/Login_Screen');
+                      Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Login_Screen()));
                     },
                         child: Text('Get Statred' , style: TextStyle(fontSize: SizeConfig.scaleTextFont(17) , color: Colors.white),),
                     style: ElevatedButton.styleFrom(

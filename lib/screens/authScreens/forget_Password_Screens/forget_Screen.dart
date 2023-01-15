@@ -1,6 +1,9 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+// ignore_for_file: camel_case_types, prefer_const_constructors, file_names
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:xdd/utils/Helpers.dart';
+
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/sizeconfig.dart';
 import 'package:xdd/utils/Widgets/styles_App.dart';
@@ -14,16 +17,13 @@ class Forget_Password_Screen extends StatefulWidget {
 }
 
 class _Forget_Password_ScreenState extends State<Forget_Password_Screen> {
-  late TapGestureRecognizer _tapGestureRecognizer;
-
+late  TextEditingController _emailEditingController;
   @override
   void initState() {
     // TODO: implement initState
+    _emailEditingController = TextEditingController();
     super.initState();
-    _tapGestureRecognizer = TapGestureRecognizer()
-      ..onTap = () {
-        Navigator.pushNamed(context, '/Regestration_Screen');
-      };
+
   }
 
   @override
@@ -65,11 +65,25 @@ class _Forget_Password_ScreenState extends State<Forget_Password_Screen> {
                 SizedBox(height: SizeConfig.scaleHeight(9)),
                 textField_app(
                   hint: 'Enter your UserName or Email ...',
+                  textEditingController: _emailEditingController,
                 ),
                 SizedBox(height: SizeConfig.scaleHeight(20)),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/Code_verifaction_Screen');
+                  onPressed: () async{
+
+                      try{
+                        await FirebaseAuth.instance.app.setAutomaticDataCollectionEnabled(true);
+                        await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailEditingController.text.trim());
+                        Helpers.showSnackBar(context, 'We Are Sending url Link to your Email , Please Check your Email',);
+                        Navigator.pop(context);
+
+                      }on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          Helpers.showSnackBar(context, 'No user found for that email.',error: true);
+                        }
+                      }catch (e){
+                        Helpers.showSnackBar(context,e.toString(),error: true);
+                      }
                   },
                   child: Styles_App(
                     text: 'Send',

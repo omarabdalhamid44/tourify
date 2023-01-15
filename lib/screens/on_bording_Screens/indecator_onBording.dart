@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: must_be_immutable, prefer_const_constructors, use_key_in_widget_constructors, camel_case_types, file_names
+
 import 'package:flutter/material.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
-import 'package:xdd/utils/sizeconfig.dart';
 
 class indecator_onBording extends StatelessWidget {
 bool seleted = false;

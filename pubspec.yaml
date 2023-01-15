@@ -36,7 +36,20 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.3.11
   firebase_core: ^1.13.1
+  cloud_firestore: ^3.1.11
+  firebase_messaging: ^11.2.12
+  google_maps_flutter: ^2.1.3
+  url_launcher: ^6.1.2
+  cached_network_image: ^3.2.0
+  image_picker: ^0.8.5
+  firebase_storage: ^10.2.15
+  colorize_text_avatar: ^1.0.2
+  shared_preferences: ^2.0.13
 
+  flutter_icons:
+    git:
+      url: https://github.com/adarsh-technocrat/flutter-icons.git
+      branch: null-safety-migration
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,24 +74,20 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - images/logo/logoTourify.png
+     - images/logo/logo.png
+     - images/bkProfile.png
      - images/onbord1.png
      - images/onbord2.png
      - images/onbord3.png
      - images/logIn_Sc.png
      - images/forget_Sc.png
-     - images/gaza.png
-     - images/Quds.png
-     - images/ramallah.png
-     - images/tabaria.png
-     - images/yaffa.png
-     - images/hifa.png
      - images/icon/fillter.png
      - images/icon/Heart.png
      - images/icon/cloudy.png
      - images/icon/Notification.png
      - images/icon/left.png
      - images/icon/right.png
+     - images/icon/Storyadd.png
      - images/icon/left2.png
      - images/icon/right2.png
      - images/icon/menudark.png
@@ -87,6 +96,7 @@ flutter:
      - images/icon/story.png
      - images/icon/map.png
      - images/icon/profile.png
+     - images/icon/Chaticon.png
      - images/icon/setting.png
      - images/icon/calling.png
      - images/icon/Info.png
@@ -101,6 +111,8 @@ flutter:
      - images/icon/360Degree.png
      - images/icon/cities.png
      - images/icon/more.png
+     - images/icon/uploadStory.png
+     - images/icon/dilvery.png
      - images/personImage/person1.jpg
      - images/personImage/person2.jpg
      - images/personImage/person3.jpg
@@ -119,11 +131,20 @@ flutter:
      - images/placeImage/story7.jfif
      - images/placeImage/story8.jpg
      - images/placeImage/story9.png
-     - images/placeImage/place_gaza/basher.jpg
-     - images/placeImage/place_gaza/bb.jpg
-     - images/placeImage/place_gaza/qalaa.jpg
-     - images/placeImage/place_gaza/sea.jpg
-     - images/placeImage/place_gaza/museim.jfif
+
+     - images/asset/arab.png
+     - images/asset/delveryPage.png
+     - images/asset/eng.png
+     - images/asset/germ.png
+     - images/asset/help.png
+     - images/asset/hyndui.png
+     - images/asset/italy.png
+     - images/asset/lan.png
+     - images/asset/toursist.png
+     - images/asset/turc.png
+     - images/asset/setting.png
+     - images/asset/contact.png
+
 
 
 

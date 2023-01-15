@@ -1,13 +1,15 @@
+// ignore_for_file: file_names, camel_case_types, prefer_const_constructors_in_immutables, prefer_const_constructors, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:xdd/utils/sizeconfig.dart';
 
 
-class onBordingScreenWid extends StatelessWidget {
+class OnBordingScreenWid extends StatelessWidget {
 
 final String title;
 final String subTitle;
 final String image;
-  onBordingScreenWid({
+  OnBordingScreenWid({
     required this.title,
     required this.subTitle,
     required this.image});

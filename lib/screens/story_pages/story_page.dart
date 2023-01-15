@@ -1,8 +1,12 @@
 
+// ignore_for_file: prefer_const_constructors, camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:xdd/screens/story_pages/storyView.dart';
+import 'package:xdd/screens/BnScreens/mainScreens/Notifications.dart';
+import 'package:xdd/screens/BnScreens/mainScreens/feverateScreen.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/VeriableConst/imageIcon_.dart';
+import 'package:xdd/utils/VeriableConst/variables.dart';
 import 'package:xdd/utils/Widgets/story_module.dart';
 import 'package:xdd/utils/Widgets/styles_App.dart';
 
@@ -48,21 +52,26 @@ class _Story_Page_ScreenState extends State<Story_Page_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar:  AppBar(
         iconTheme: IconThemeData(color: Colors_APP.color_primary),
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push( context, MaterialPageRoute(builder: (context) => FeverateScreen()));
+
+            },
             icon: imageIcon.heartIcon,
             color: Colors_APP.color_primary,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push( context, MaterialPageRoute(builder: (context) => Notifications()));
+            },
             icon: imageIcon.notifiIcon,
             color: Colors_APP.color_primary,
-          )
+          ),
         ],
       ),
       body: Padding(

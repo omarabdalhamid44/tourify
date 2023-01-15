@@ -22,12 +22,11 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -37,10 +36,12 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.xdd"
-        minSdkVersion 19
-        targetSdkVersion 31
+        minSdkVersion 20
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        multiDexEnabled true
+
     }
 
     buildTypes {
@@ -50,12 +51,19 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    namespace 'com.example.xdd'
+    buildToolsVersion '33.0.1'
 }
 
 flutter {
     source '../..'
 }
 dependencies {
-    implementation platform('com.google.firebase:firebase-bom:29.2.1')
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'io.grpc:grpc-okhttp:1.52.1'
+
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
 }
+apply plugin: 'com.google.gms.google-services'

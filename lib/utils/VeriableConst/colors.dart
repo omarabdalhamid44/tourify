@@ -1,4 +1,6 @@
 
+// ignore_for_file: constant_identifier_names, camel_case_types
+
  import 'package:flutter/material.dart';
 class Colors_APP{
 static const color_bg_lanach_sc = Color(0xFF6F3CBD);

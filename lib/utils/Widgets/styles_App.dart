@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, file_names, must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/sizeconfig.dart';

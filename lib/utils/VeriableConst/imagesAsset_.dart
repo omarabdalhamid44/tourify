@@ -1,4 +1,6 @@
 
+// ignore_for_file: non_constant_identifier_names, file_names, camel_case_types
+
 import 'package:xdd/utils/Models/dataCategory.dart';
 
 class imagesAsset_{

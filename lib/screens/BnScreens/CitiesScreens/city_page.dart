@@ -1,5 +1,14 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, non_constant_identifier_names
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:xdd/databaseManage/DatabasePlaceHistorical.dart';
+import 'package:xdd/databaseManage/DatabasePlaceOfEntertainment.dart';
+import 'package:xdd/databaseManage/DatabasePlaceReligion.dart';
+import 'package:xdd/screens/BnScreens/mainScreens/Notifications.dart';
+import 'package:xdd/screens/BnScreens/mainScreens/feverateScreen.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
+import 'package:xdd/utils/VeriableConst/variables.dart';
 import 'package:xdd/utils/Widgets/grid_city_place.dart';
 import 'package:xdd/utils/VeriableConst/imageIcon_.dart';
 import 'package:xdd/utils/Widgets/imageViewInHome.dart';
@@ -11,12 +20,12 @@ import 'package:xdd/utils/sizeconfig.dart';
 class City_Pages_module extends StatefulWidget {
  final String cityName;
  final String cityDiscrption;
- final String cityInfo;
+ final List cityImage;
 
    City_Pages_module({
    required this.cityName,
    required this.cityDiscrption,
-   required this.cityInfo});
+   required this.cityImage});
 
   @override
   _City_Pages_moduleState createState() => _City_Pages_moduleState();
@@ -27,22 +36,55 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
   late PageController _pageViewCatogriesController;
   int _curent_image = 0;
   int _curent_Catogry = 0;
+  DatabasePlaceHistorical databasePlaceHistorical = DatabasePlaceHistorical();
+  DatabasePlaceReligion databasePlaceReligion = DatabasePlaceReligion();
+  DatabasePlaceOfEntertainment databasePlaceOfEntertainment = DatabasePlaceOfEntertainment();
+  List docPlaceHis = [];
+  List docPlaceRel = [];
+  List docPlaceEnt = [];
+  List imagePlaceHis = [];
+  List imagePlaceRel = [];
+  List imagePlaceEnt = [];
+  initialise() async {
+    databasePlaceHistorical.read(widget.cityName).then((value) =>
+    {
+      setState(() {
+        docPlaceHis = (value[0]['PlaceHistorical']);
+        for (var doc in docPlaceHis) {
+          imagePlaceHis.add(doc['Images']);
+        }
+      })
+    });
+    databasePlaceReligion.read(widget.cityName).then((value) =>
+    {
+      setState(() {
+        docPlaceRel = (value[0]['PlaceReligion']);
+        for (var doc in docPlaceRel) {
+           imagePlaceRel.add(doc['Images']);
+        }
+      })
+    });
 
+    databasePlaceOfEntertainment.read(widget.cityName).then((value) =>
+    {
+      setState(() {
+        docPlaceEnt = (value[0]['PlaceOfEntertainment']);
+        for (var doc in docPlaceEnt) {
+          imagePlaceEnt.add(doc['Images']);
+
+        }
+      })
+    });
+  }
   @override
   void initState() {
     _pageViewController = PageController();
     _pageViewCatogriesController = PageController();
+    initialise();
     super.initState();
     // TODO: implement initState
   }
-  //
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   _pageViewCatogriesController.dispose();
-  //   _pageViewController.dispose();
-  // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,12 +95,17 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push( context, MaterialPageRoute(builder: (context) => FeverateScreen()));
+
+            },
             icon: imageIcon.heartIcon,
             color: Colors_APP.color_primary,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push( context, MaterialPageRoute(builder: (context) => Notifications()));
+            },
             icon: imageIcon.notifiIcon,
             color: Colors_APP.color_primary,
           ),
@@ -75,24 +122,18 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
-              SizedBox(height: 10),
-              Styles_App(
-                text: widget.cityDiscrption, //وصف المدينة متغير
-                fontWeight: FontWeight.w400,
-                fontSize: 11,
-                textColor: Color(0xff303030),
-              ),
+
               SizedBox(height: 20),
-              Container(
+              SizedBox(
                   height: SizeConfig.scaleHeight(180),
                   child: Stack(
                     children: [
                       PageView.builder(
                         itemBuilder: (context , index){
                           return ImageView_HomePage(
-                              imageName: imagesAsset_.Image_Cities.elementAt(index));
+                              imageName: CachedNetworkImageProvider(widget.cityImage[index]));
                         },
-                        itemCount: imagesAsset_.Image_Cities.length,
+                        itemCount: widget.cityImage.length,
                         controller: _pageViewController,
                         onPageChanged: (int cruentImage) {
                           setState(() {
@@ -139,13 +180,12 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
                                 duration: Duration(seconds: 2),
                                 curve: Curves.easeIn);
                           },
-                          icon: _curent_image == 5
+                          icon: _curent_image == widget.cityImage.indexOf(widget.cityImage.last)
                               ? imageIcon.right2Icon
                               : imageIcon.rightIcon,
-                          color:
-                              _curent_image == imagesAsset_.Image_Cities.length
-                                  ? Colors.grey
-                                  : Colors.white,
+                          color: _curent_image == widget.cityImage.indexOf(widget.cityImage.last)
+                              ? Colors.grey
+                              : Colors.white,
                         ),
                       )
                     ],
@@ -165,12 +205,15 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
                 fontSize: 18,
               ),
               SizedBox(height: 10),
-              Styles_App(
-                text: widget.cityInfo,//متغيير معلومات المدينة
-                    // 'It is important for us at Sbitany to make the purchasing process as easy as possible for you. For that reason we have created a few buying guides to help guide you before making your decision.',
-                fontWeight: FontWeight.w400,
-                fontSize: 13,
-                textColor: Color(0xff303030),
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal:6),
+                child: Styles_App(
+                  text: widget.cityDiscrption,//متغيير معلومات المدينة
+                      // 'It is important for us at Sbitany to make the purchasing process as easy as possible for you. For that reason we have created a few buying guides to help guide you before making your decision.',
+                  fontWeight: FontWeight.w400,
+                  fontSize: 13,
+                  textColor: Color(0xff303030),
+                ),
               ),
               SizedBox(height: 20),
               SingleChildScrollView(
@@ -287,21 +330,44 @@ class _City_Pages_moduleState extends State<City_Pages_module> {
                       });
                     },
                     children: [
-                      grid_forCityPlace(
-                        assetImageName: imagesAsset_.Religious +
-                            imagesAsset_.Historical +
-                            imagesAsset_.Entertaining,
-                      ),
-                      grid_forCityPlace(
-                        assetImageName: imagesAsset_.Religious,
-                        count: imagesAsset_.Religious.length,
-                      ),
-                      grid_forCityPlace(
-                          assetImageName: imagesAsset_.Historical,
-                          count: imagesAsset_.Historical.length),
-                      grid_forCityPlace(
-                          assetImageName: imagesAsset_.Entertaining,
-                          count: imagesAsset_.Entertaining.length),
+
+                      docPlaceRel.isNotEmpty||docPlaceHis.isNotEmpty||docPlaceEnt.isNotEmpty?  Grid_ForCityPlace(
+                        images: imagePlaceRel+
+                        imagePlaceHis+
+                        imagePlaceEnt,
+                        assetImageName: docPlaceRel +
+                            docPlaceHis +
+                            docPlaceEnt,
+                        count: docPlaceRel.length +
+                            docPlaceHis.length +
+                            docPlaceEnt.length,
+                      ):Container(
+                          alignment: Alignment.topCenter,
+                          child: Styles_App(text: 'No Data Yet.',fontWeight: FontWeight.bold)),
+                      docPlaceRel.isNotEmpty?
+                      Grid_ForCityPlace(
+                        catgory: 'PlaceReligion',
+                        images: imagePlaceRel,
+                        assetImageName: docPlaceRel,
+                        count: docPlaceRel.length,
+                      ):Container(
+                          alignment: Alignment.topCenter,
+                          child: Styles_App(text: 'No Data Yet.',fontWeight: FontWeight.bold)),
+                      docPlaceHis.isNotEmpty?
+                      Grid_ForCityPlace(
+                        images: imagePlaceHis,
+                          catgory: 'PlaceHistorical',
+                          assetImageName: docPlaceHis,
+                          count: docPlaceHis.length):Container(
+                          alignment: Alignment.topCenter,
+                          child: Styles_App(text: 'No Data Yet.',fontWeight: FontWeight.bold)),
+                      docPlaceEnt.isNotEmpty? Grid_ForCityPlace(
+                        images: imagePlaceEnt,
+                          catgory: 'PlaceOfEntertainment',
+                          assetImageName: docPlaceEnt,
+                          count: docPlaceEnt.length):Container(
+                          alignment: Alignment.topCenter,
+                          child: Styles_App(text: 'No Data Yet.',fontWeight: FontWeight.bold)),
                     ],
                   ))
             ],

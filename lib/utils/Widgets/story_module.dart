@@ -1,13 +1,14 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:xdd/screens/story_pages/storyView.dart';
-import 'package:xdd/utils/VeriableConst/colors.dart';
 
 class story_Module extends StatefulWidget {
   final String personImage;
   final String storyImage;
   final Function? onTap;
 
-  story_Module(
+  const story_Module(
       {required this.personImage, required this.storyImage, this.onTap});
 
   @override

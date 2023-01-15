@@ -1,6 +1,12 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names, camel_case_types, prefer_const_constructors, unnecessary_null_comparison
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:xdd/screens/BnScreens/BnScreens.dart';
+import 'package:xdd/screens/BnScreens/profileScreens/Profile.dart';
+import 'package:xdd/screens/authScreens/forget_Password_Screens/forget_Screen.dart';
+import 'package:xdd/screens/authScreens/registration_Screen.dart';
+import 'package:xdd/utils/Helpers.dart';
 import 'package:xdd/utils/VeriableConst/colors.dart';
 import 'package:xdd/utils/sizeconfig.dart';
 import 'package:xdd/utils/Widgets/styles_App.dart';
@@ -18,7 +24,6 @@ class _Login_ScreenState extends State<Login_Screen> {
   late TapGestureRecognizer _tapGestureRecognizer;
   late TextEditingController _emailTextEditingController;
   late TextEditingController _passTextEditingController;
-
   @override
   void initState() {
     // TODO: implement initState
@@ -27,7 +32,7 @@ class _Login_ScreenState extends State<Login_Screen> {
     _passTextEditingController = TextEditingController();
     _tapGestureRecognizer = TapGestureRecognizer()
       ..onTap = () {
-        Navigator.pushNamed(context, '/Regestration_Screen');
+        Navigator.push(context,MaterialPageRoute(builder: (context)=>Regestration_Screen()));
       };
   }
 
@@ -88,7 +93,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                   children: [
                     InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/Forget_Screen');
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Forget_Password_Screen()));
                         },
                         child: Styles_App(
                           text: 'Forgot Password ?',
@@ -100,23 +105,8 @@ class _Login_ScreenState extends State<Login_Screen> {
                 SizedBox(height: SizeConfig.scaleHeight(8)),
                 ElevatedButton(
                   onPressed: () async {
-                    var result = await FirebaseAuth.instance
-                        .signInWithEmailAndPassword(
-                        email: _emailTextEditingController.text,
-                        password: _passTextEditingController.text) ;
-                    if (result != null) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Styles_App(text:'logged In',fontWeight: FontWeight.w400,textColor: Colors.white,),
-                        backgroundColor: Colors.green,
-                        behavior: SnackBarBehavior.floating,));
-                      Navigator.pushReplacementNamed(
-                          context, '/Home_Page_Screen');
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Styles_App(text:'Please enter correct data.',fontWeight: FontWeight.w400,textColor: Colors.white,),
-                        backgroundColor: Colors.red,
-                        behavior: SnackBarBehavior.floating,duration: Duration(seconds: 5),));
-                    }
+                     cheakFieldError(_emailTextEditingController.text, _passTextEditingController.text, context);
+
                   },
                   child: Styles_App(
                     text: 'Log In',
@@ -155,3 +145,31 @@ class _Login_ScreenState extends State<Login_Screen> {
         ));
   }
 }
+
+Future cheakFieldError(String email,String pass,BuildContext context) async{
+  UserCredential? userCredential;
+  var auth=  FirebaseAuth.instance;
+  try {
+       userCredential = await auth.signInWithEmailAndPassword(
+          email: email,
+          password: pass,
+      );
+         Helpers.showSnackBar(context, 'Login Succsesfuly',error: false);
+       Navigator.pushReplacement( context ,MaterialPageRoute(builder: (context)=> BnScreens()));
+
+
+  } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Helpers.showSnackBar(context, 'No user found for that email.',error: true);
+      } else if (e.code == 'wrong-password') {
+        Helpers.showSnackBar(context, 'Wrong password provided for that user.',error: true);
+      }else {
+        Helpers.showSnackBar(context, e.message.toString(),error: true);
+
+      }
+
+    }catch (e){
+    Helpers.showSnackBar(context,e.toString(),error: true);
+  }
+}
+
